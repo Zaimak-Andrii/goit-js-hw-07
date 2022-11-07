@@ -3,7 +3,8 @@ import { galleryItems } from './gallery-items.js';
 // Change code below this line
 const galleryRef = document.querySelector('div.gallery');
 const modal = basicLightbox.create(`
-    <img src="" alt="" width="1000">
+  <div class="modal">
+  </div>
 `);
 
 galleryRef.addEventListener('click', galleryClickHandler);
@@ -34,10 +35,9 @@ function galleryClickHandler(evt) {
   if (target.nodeName !== 'IMG') return;
 
   modal.show((modal) => {
-    const imgElem = modal.element().querySelector('img');
+    const imgElem = modal.element().querySelector('.modal');
 
-    imgElem.src = target.dataset.source;
-    imgElem.alt = target.getAttribute('alt');
+    imgElem.innerHTML = `<img src="${target.dataset.source}" alt="${target.alt}" width="1000">`;
 
     addKeyEvent();
   });
